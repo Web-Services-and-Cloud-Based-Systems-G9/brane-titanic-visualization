@@ -14,7 +14,10 @@ jobs:
           toolchain: stable
 
       - name: 'install cargo'
-        run: cargo build --release --all-features
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release --all-features
 
       - name: 'install brane'
         run: cargo install --git http://github.com/onnovalkering/brane brane-cli
