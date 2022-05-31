@@ -17,7 +17,7 @@ jobs:
         run: cargo build --release --all-features
 
       - name: 'install brane'
-      - run: cargo install --git http://github.com/onnovalkering/brane brane-cli
+        run: cargo install --git http://github.com/onnovalkering/brane brane-cli
 
       - name: 'use the brane CLI'
         run: |
