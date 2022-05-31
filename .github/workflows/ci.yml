@@ -21,7 +21,7 @@ jobs:
 
       - name: 'test the brane package'
         run: |
-          brane build ./container.yml
+          brane build container.yml
 
       - name: 'build package'
         run: |
