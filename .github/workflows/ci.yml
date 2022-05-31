@@ -1,4 +1,4 @@
-name: CI
+name: BraneBuild
 on: ['push']
 
 jobs:
@@ -19,12 +19,10 @@ jobs:
           command: install
           args: --git http://github.com/onnovalkering/brane brane-cli
 
-      - name: 'use the brane CLI'
+      - name: 'test the brane package'
         run: |
-          brane --help
-          # check that the brane services are running
-          docker ps
+          brane build ./container.yml
 
-      - name: 'query the jupyterlab IDE access token'
+      - name: 'build package'
         run: |
-          echo "${{ steps.brane_setup.outputs.jupyterlab_token }}"
+          brane import

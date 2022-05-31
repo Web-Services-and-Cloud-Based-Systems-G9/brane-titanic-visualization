@@ -1,4 +1,0 @@
-[package]
-name = "brane_titanic_visualization" # the name of the package
-version = "0.1.0"    # the current version, obeying semver
-authors = ["Alice <a@example.com>"]
