@@ -13,6 +13,11 @@ jobs:
         with:
           toolchain: stable
 
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          driver: docker-container
+
       - name: 'install brane with cargo'
         uses: actions-rs/cargo@v1
         with:
@@ -23,6 +28,3 @@ jobs:
         run: |
           brane build container.yml
 
-      - name: 'build package'
-        run: |
-          brane import
