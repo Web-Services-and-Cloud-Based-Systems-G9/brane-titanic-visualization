@@ -1,0 +1,91 @@
+name: titanicviz
+version: 1.0.1
+kind: ecu
+
+dependencies:
+  - python3
+  - python3-pip
+  - python3-yaml
+
+install:
+  - pip3 install -r ./requirements.txt
+
+files:
+  - main.py
+  - requirements.txt
+  - test.csv
+  - train.csv
+
+entrypoint:
+  kind: task
+  exec: main.py
+
+actions:
+  'plot_distribution':
+    command:
+      args:
+        - plot_distribution
+    input:
+      - type: string
+        name: data
+
+      - type: string
+        name: feature
+
+      - type: string
+        name: plot_title
+    output:
+      - type: string
+        name: output
+
+  'bar_chart_compare':
+    command:
+      args:
+        - bar_chart_compare
+    input:
+      - type: string
+        name: data
+
+      - type: string
+        name: feature_y
+
+      - type: string
+        name: feature_1
+
+      - type: string
+        name: feature_2
+
+      - type: string
+        name: y_label
+
+      - type: string
+        name: plot_title
+    output:
+      - type: string
+        name: output
+
+  'feature_group_bar_chart':
+    command:
+      args:
+        - feature_group_bar_chart
+    input:
+      - type: string
+        name: data
+
+      - type: string
+        name: feature_y_binary
+
+      - type: string[]
+        name: feature_y_index
+
+      - type: string
+        name: feature
+
+      - type: string
+        name: y_label
+
+      - type: string
+        name: plot_title
+    output:
+      - type: string
+        name: output

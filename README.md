@@ -1,1 +1,1 @@
-# brane-titanic-visualization
+# Brane Data Visualization Package for the Titanic dataset
