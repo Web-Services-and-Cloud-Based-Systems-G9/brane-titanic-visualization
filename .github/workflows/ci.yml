@@ -8,10 +8,12 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
 
-      - name: 'install cargo'
+      - name: Check out cargo code
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
+
+      - name: 'install cargo'
         run: cargo build --release --all-features
 
       - name: 'install brane'
