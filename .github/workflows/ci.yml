@@ -6,14 +6,23 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
     - uses: actions/checkout@v2
-
-    - name: 'setup brane'
-      uses: 'romnn/setup-brane-action@master'
-      id: brane_setup
-      # optionally:
+    - uses: actions-rs/toolchain@v1
       with:
-        start_instance: true
-        start_ide: true
+        toolchain: stable
+
+    - name: 'install cargo'
+    - run: cargo build --release --all-features
+
+    - name: 'install brane'
+    - run: cargo install --git http://github.com/onnovalkering/brane brane-cli
+
+#    - name: 'setup brane'
+#      uses: 'romnn/setup-brane-action@master'
+#      id: brane_setup
+#      # optionally:
+#      with:
+#        start_instance: true
+#        start_ide: true
 
     - name: 'use the brane CLI'
       run: |
