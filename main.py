@@ -17,7 +17,7 @@ def read_dataset(data_fn: str) -> pd.DataFrame:
 
 def generate_figure_name() -> str:
     prefix = "/data/"
-    if os.environ['TESTING'] == "1":
+    if "TESTING" in os.environ and os.environ['TESTING'] == "1":
         prefix = ""
     figure_name = prefix + str(uuid.uuid4()) + ".png"
     return figure_name
