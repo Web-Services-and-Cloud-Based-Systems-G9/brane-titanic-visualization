@@ -8,6 +8,7 @@ DATA_PATH = os.path.join(ROOT_DIR, 'train.csv')
 
 
 def test_plot_distribution_wrapper():
+    os.environ["TESTING"] = "1"
     os.environ["DATA"] = DATA_PATH
     os.environ["FEATURE"] = "Age"
     os.environ["PLOT_TITLE"] = "Age Distribution of Passengers"
@@ -24,6 +25,7 @@ def test_plot_distribution_wrapper():
 
 
 def test_bar_chart_compare_wrapper():
+    os.environ["TESTING"] = "1"
     os.environ["DATA"] = DATA_PATH
     os.environ["FEATURE_Y"] = "Survived"
     os.environ["FEATURE_1"] = "Pclass"
@@ -43,6 +45,7 @@ def test_bar_chart_compare_wrapper():
 
 
 def test_feature_group_bar_chart_wrapper():
+    os.environ["TESTING"] = "1"
     os.environ["DATA"] = DATA_PATH
     os.environ["FEATURE_Y_BINARY"] = "Survived"
     os.environ["FEATURE_Y_INDEX"] = "2"
