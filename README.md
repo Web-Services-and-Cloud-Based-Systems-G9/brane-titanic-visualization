@@ -1,4 +1,5 @@
 # Brane Data Visualization Package for the Titanic dataset
+[![DOI](https://zenodo.org/badge/498335157.svg)](https://zenodo.org/badge/latestdoi/498335157)
 
 The following repository contains the implementation of a **visualization package in brane** for Data Science tasks on a Kaggle competition dataset related to the sinking of the Titanic. This project correspond to Assignment 4.b of the Web Services and Cloud Based Systems at University of Amsterdam (G9).
 
@@ -12,7 +13,7 @@ The package definition is inside the `container.yml` file in the root of this re
 ### Create Histogram and KDE plot 
 
 - **Method Global Name**: `plot_distribution` 
-- **Description**: This method loads the given `data` into a Pandas dataframe and use the `feature` column to build the plot. The plot will be output with the title given in `plot_title`.
+- **Description**: This method loads the given `data` into a Pandas dataframe and use the `feature` column to build the plot. The plot will be output with the title given in `plot_title`. The plot will be created inside the `/data` directory with a unique name (UUID4) which is the output of the method.
 - **INPUT**: 
   - `data`(str): File name of the data to plot the Histogram plot. On first instance, you only have `'train.csv'` and `'test.csv'` to use. 
   - `feature`(str): Name of the feature (i.e. column) to use for the plot 
@@ -22,20 +23,20 @@ The package definition is inside the `container.yml` file in the root of this re
 
 ### Create Stacked Barchart
 - **Method Global Name**: `feature_group_bar_chart` 
-- **Description**: This method loads the given `data` into a Pandas dataframe and builds a stacked barchart using `feature` for counting and a binary feature columns `feature_y_binary` to segregate each bar into two stacked groups. The plot will be output with the y-axis title given in `y_label`. The plot will be output with the title given in `plot_title`. The plot will be output with the x-axis labels given in `feature_y_index`.
+- **Description**: This method loads the given `data` into a Pandas dataframe and builds a stacked barchart using `feature` for counting and a binary feature columns `feature_y_binary` to segregate each bar into two stacked groups. The plot will be output with the y-axis title given in `y_label`. The plot will be output with the title given in `plot_title`. The plot will be output with the x-axis labels given in `feature_y_index`. The plot will be created inside the `/data` directory with a unique name (UUID4) which is the output of the method.
 - **INPUT**: 
   - `data`(str): File name of the data to plot the stacked bar chart. On first instance, you only have `'train.csv'` and `'test.csv'` to use. 
   - `feature`(str): Name of the feature (i.e. column) to use for the bar heights 
   - `feature_y_binary`(str): Name of the binary feature (i.e. column) to use for the stacking the bars 
   - `plot_title`(str): Title of the plot
   - `y_label`(str): Label of the plot y-axis
-  - `feature_y_index`(List[str]): Labels of the plot x-axis. Must be of length 2.
+  - `feature_y_index`(str): Labels of the plot x-axis. Must be a string of 2 elements separated by commas.
 - **OUTPUT**:
   - `output`(str): Name of the file that was generated with the plot image
 
 ### Create grouped bar chart
 - **Method Global Name**: `bar_chart_compare` 
-- **Description**: This method loads the given `data` into a Pandas dataframe and builds a multi-column barchart. The height of the bars is determined by `feature_y`. Each group of bars is separated by each possible value of `feature_1`. Inside each group, bars are separated by each possible value of `feature_2`. The latter is optional. The plot will be output with the y-axis title given in `y_label`. The plot will be output with the title given in `plot_title`. 
+- **Description**: This method loads the given `data` into a Pandas dataframe and builds a multi-column barchart. The height of the bars is determined by `feature_y`. Each group of bars is separated by each possible value of `feature_1`. Inside each group, bars are separated by each possible value of `feature_2`. The latter is optional. The plot will be output with the y-axis title given in `y_label`. The plot will be output with the title given in `plot_title`. The plot will be created inside the `/data` directory with a unique name (UUID4) which is the output of the method.
 - **INPUT**: 
   - `data`(str): File name of the data to plot the stacked bar chart. On first instance, you only have `'train.csv'` and `'test.csv'` to use. 
   - `feature_1`(str): Name of the categorical feature (i.e. column) to separate each group of bars.
@@ -50,7 +51,8 @@ The package definition is inside the `container.yml` file in the root of this re
 ## Unit Tests (locally)
 Unit tests were implemented in [Pytest](https://docs.pytest.org/en/6.2.x/contents.html). There are three tests that needs to pass. Each test checks the correctness YAML output of each method. These methods only check if the output have a correct format. To execute locally you can execute the following commands:
 1. Install pipenv `pip3 install pipenv`
-2. Run the tests `pipenv run test`
+2. Install dependencies `pipenv install`
+3. Run the tests `pipenv run test`
 
 
 ## Building with Brane (locally)
@@ -67,12 +69,26 @@ brane import Web-Services-and-Cloud-Based-Systems-G9/brane-titanic-visualization
 This repository a **GitHub Action** workflows configured that runs automated tests to ensure that the methods of the packages work correctly (`.github/workflows/pytest.yml`). In addition to this, it makes sure that the package can be built in Brane successfully by implementing a test which tries to do the building process of the package (`.github/workflows/ci.yml`).
 
 ## Usage example
-Once you have build the package with Brane, you can use the following examples to try the package. 
+Once you have build the package with Brane, you can use the following example to try the package. 
 
-TODO
+```js
+import titanicviz;
 
+// Create Histogram and KDE plot
+let feature = "Age";
+let plot_title = "My title"
+plot_distribution(train, feature, plot_title);
 
-## DOI
+// Create grouped barchart
+let feature_y := "Survived";
+let feature_1 := "Pclass";
+let feature_2 := "Sex";
+let y_label := "Survival Rate";
+let plot_title := "Survival rate by sex and class";
+bar_chart_compare(train, feature_y, feature_1, feature_2, y_label, plot_title);
 
-TODO
+// Plots are stored inside the /data directory
+
+```
+
 

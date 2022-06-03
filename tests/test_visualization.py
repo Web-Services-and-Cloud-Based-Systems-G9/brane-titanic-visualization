@@ -48,9 +48,7 @@ def test_feature_group_bar_chart_wrapper():
     os.environ["TESTING"] = "1"
     os.environ["DATA"] = DATA_PATH
     os.environ["FEATURE_Y_BINARY"] = "Survived"
-    os.environ["FEATURE_Y_INDEX"] = "2"
-    os.environ["FEATURE_Y_INDEX0"] = "Passenger Survived"
-    os.environ["FEATURE_Y_INDEX1"] = "Passenger Died"
+    os.environ["FEATURE_Y_INDEX"] = "Passenger Survived,Passenger Died"
     os.environ["FEATURE"] = "Pclass"
     os.environ["Y_LABEL"] = "# of passengers"
     os.environ["PLOT_TITLE"] = "# of passengers surviving by class"

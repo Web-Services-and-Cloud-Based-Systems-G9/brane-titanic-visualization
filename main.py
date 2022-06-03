@@ -93,9 +93,7 @@ def feature_group_bar_chart_wrapper():
     arg_feature = os.environ["FEATURE"]
     arg_y_label = os.environ["Y_LABEL"]
     arg_plot_title = os.environ["PLOT_TITLE"]
-    arg_feature_y_index = [
-        os.environ[f"FEATURE_Y_INDEX{i}"] for i in range(int(os.environ["FEATURE_Y_INDEX"]))
-    ]
+    arg_feature_y_index = os.environ["FEATURE_Y_INDEX"].split(',')
     output = feature_group_bar_chart(arg_data, arg_feature_y_binary, arg_feature_y_index, arg_feature, arg_y_label,
                                      arg_plot_title)
     yaml_result = yaml.dump({"output": output})

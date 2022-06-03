@@ -75,7 +75,7 @@ actions:
       - type: string
         name: feature_y_binary
 
-      - type: string[]
+      - type: string
         name: feature_y_index
 
       - type: string
