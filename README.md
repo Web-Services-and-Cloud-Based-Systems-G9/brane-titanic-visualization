@@ -75,8 +75,9 @@ Once you have build the package with Brane, you can use the following example to
 import titanicviz;
 
 // Create Histogram and KDE plot
-let feature = "Age";
-let plot_title = "My title"
+let feature := "Age";
+let plot_title := "My title";
+let train := "train.csv";
 plot_distribution(train, feature, plot_title);
 
 // Create grouped barchart
